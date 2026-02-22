@@ -1,10 +1,10 @@
 from PyQt6.QtWidgets import (
-    QDialog, QHBoxLayout, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QPushButton)
+    QComboBox, QDialog, QHBoxLayout, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QPushButton)
 from PyQt6.QtCore import QThread, Qt, pyqtSignal
 from PyQt6.QtGui import QCloseEvent, QIntValidator
 
 from constants import URL
-from database_handling import DBinsertData
+from database_handling import DBinsertData, DBgetPresets, DBsavePreset, DBcreatePresetTable
 from scraper_logic.parser import serialize_run
 
 
@@ -22,6 +22,7 @@ class ScrapeDialog(QDialog):
         self.current_max_scrape = None
 
         layout = QVBoxLayout()
+
         self.scrape_btn = QPushButton("Scrape")
         self.label = QLabel("log: ")
         self.log = QTextEdit()
@@ -115,6 +116,7 @@ class ScraperWorker(QThread):
 class ScrapeSettingsDialog(QDialog):
     def __init__(self, current_name, current_min, current_max):
         super().__init__()
+        DBcreatePresetTable()
         self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setWindowTitle("Settings")
         self.current_name = current_name
@@ -124,6 +126,7 @@ class ScrapeSettingsDialog(QDialog):
         nameLayout = QHBoxLayout()
         maxPriceLayout = QHBoxLayout()
         minPriceLayout = QHBoxLayout()
+
         self.nameBox = QLineEdit(self.current_name)
         self.minPriceBox = QLineEdit(self.current_min)
         self.maxPriceBox = QLineEdit(self.current_max)
@@ -137,15 +140,79 @@ class ScrapeSettingsDialog(QDialog):
         minPriceLayout.addWidget(self.minPriceBox)
         maxPriceLayout.addWidget(QLabel("Max price: "))
         maxPriceLayout.addWidget(self.maxPriceBox)
+
+        # presets
+        presetLayout = QHBoxLayout()
+        self.presetsBox = QComboBox()
+        self.savePresetBtn = QPushButton("save preset")
+        presetLayout.addWidget(QLabel("Choose preset: "))
+        presetLayout.addWidget(self.presetsBox)
+        self.updatePresetsBox()
+        if len(self.presetsBox) > 0:
+            self.loadPreset()
+        presetLayout.addWidget(self.savePresetBtn)
+        self.savePresetBtn.clicked.connect(self.savePreset)
+        self.presetsBox.currentTextChanged.connect(self.loadPreset)
+        self.setLayout(layout)
+
+        # main layout
+        layout.addLayout(presetLayout)
         layout.addLayout(nameLayout)
         layout.addLayout(minPriceLayout)
         layout.addLayout(maxPriceLayout)
         layout.addWidget(confirmButton)
-
-        self.setLayout(layout)
 
     def updateSettings(self):
         self.result_name = self.nameBox.text()
         self.result_min = self.minPriceBox.text()
         self.result_max = self.maxPriceBox.text()
         self.accept()
+
+    def savePreset(self):
+        dialog = CreatePresetDialog()
+        if dialog.exec():
+            presetName = dialog.get_preset_name()
+        keyword = self.nameBox.text().strip()
+        min_p = self.minPriceBox.text().strip()
+        max_p = self.maxPriceBox.text().strip()
+        DBsavePreset(presetName, keyword, min_p, max_p)
+        self.updatePresetsBox()
+
+    def updatePresetsBox(self):
+        presets = DBgetPresets()
+        self.presetsBox.clear()
+        for preset in presets:
+            self.presetsBox.addItem(preset[0])
+
+    def loadPreset(self):
+        presets = DBgetPresets()
+        chosenPreset = self.presetsBox.currentText()
+
+        for preset in presets:
+            if preset[0] == chosenPreset:
+                self.nameBox.setText(preset[1])
+                self.minPriceBox.setText(str(preset[2]))
+                self.maxPriceBox.setText(str(preset[3]))
+
+
+class CreatePresetDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        layout = QVBoxLayout()
+        self.nameBox = QLineEdit()
+        self.nameBox.setPlaceholderText('preset name')
+        self.confirmCreateButton = QPushButton("Confirm")
+        layout.addWidget(QLabel("Preset name:"))
+        layout.addWidget(self.nameBox)
+        layout.addWidget(self.confirmCreateButton)
+        self.setLayout(layout)
+
+        self.confirmCreateButton.clicked.connect(self.onConfirmCreateButton)
+
+    def onConfirmCreateButton(self):
+        if not self.nameBox.text().strip():
+            return
+        self.accept()
+
+    def get_preset_name(self):
+        return self.nameBox.text().strip()

@@ -31,7 +31,8 @@ def serialize_data(listings):
             link = f"https://www.olx.pl{href}" if href.startswith(
                 '/') else href
 
-            offers.append(Listing(title, price, location, date, link))
+            offers.append(Listing(title, price,  location,
+                          date, link, price_num=None))
         else:
             continue
 
