@@ -30,19 +30,19 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-##🛠️ Usage
+## 🛠️ Usage
 Launch the App:
 ```bash
 python App.py
 ```
-##
+
 Scrape Data: Click the Scrape button to open the scraper window. Use the Settings inside that window to define your keyword (e.g., "iPhone 13") and price range.
 
 Manage Database: Once the scraper finishes, close the scraper window. The main dashboard will automatically refresh to show new records.
 
 Explore: Use the Filters on the main dashboard to sort existing records by price or name. Use the Search Bar for instant text-based filtering.
 
-##📁 Project Structure
+## 📁 Project Structure
 app.py - Main dashboard UI, event handling, and window management.
 
 database_handling.py - SQLite logic, dynamic SQL query builder with CAST operations for currency sorting.
