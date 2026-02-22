@@ -38,16 +38,16 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 ## 🛠️ Usage
-Launch the App:
+- Launch the App:
 ```bash
 python main.py
 ```
 
-Scrape Data: Click the Scrape button to open the scraper window. Use the Settings inside that window to define your keyword (e.g., "iPhone 13") and price range.
+- Scrape Data: Click the Scrape button to open the scraper window. Use the Settings inside that window to define your keyword (e.g., "iPhone 13") and price range.
 
-Manage Database: Once the scraper finishes, close the scraper window. The main dashboard will automatically refresh to show new records.
+- Manage Database: Once the scraper finishes, close the scraper window. The main dashboard will automatically refresh to show new records.
 
-Explore: Use the Filters on the main dashboard to sort existing records by price or name. Use the Search Bar for instant text-based filtering.
+- Explore: Use the Filters on the main dashboard to sort existing records by price or name. Use the Search Bar for instant text-based filtering.
 
 ## 📁 Project Structure
 ```plaintext
