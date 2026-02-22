@@ -43,7 +43,7 @@ Manage Database: Once the scraper finishes, close the scraper window. The main d
 Explore: Use the Filters on the main dashboard to sort existing records by price or name. Use the Search Bar for instant text-based filtering.
 
 ## 📁 Project Structure
-```
+
 app.py - Main dashboard UI, event handling, and window management.
 
 database_handling.py - SQLite logic, dynamic SQL query builder with CAST operations for currency sorting.
@@ -51,6 +51,6 @@ database_handling.py - SQLite logic, dynamic SQL query builder with CAST operati
 scraper_logic.py - Selenium automation, headless browser configuration, and data serialization into objects.
 
 ui_components.py - Custom PyQt6 widgets including the listing tiles and specialized dialogs.
-```
+
 ## 📝 License
 Distributed under the MIT License. See LICENSE for more information.
