@@ -13,8 +13,9 @@ A modern desktop application built with **PyQt6** and **Selenium** that scrapes 
 * **Custom Scraping Settings:** Dynamically constructs complex OLX search URLs based on user keywords and price limits.
 
 ## 📦 Downloads
-For non-technical users, you can download the latest standalone version from the [Releases](https://github.com/Th3Groke/OLX_Scraper/releases) page. 
-*Note: Requires Google Chrome to be installed.*
+For non-technical users, you can download the latest standalone version from the [Releases](https://github.com/Th3Groke/OLX_Scraper/releases) page.
+
+**Note: Requires Google Chrome to be installed.**
 
 
 ## 🚀 Developer setup
