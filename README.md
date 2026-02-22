@@ -12,7 +12,12 @@ A modern desktop application built with **PyQt6** and **Selenium** that scrapes 
 * **Persistent Filters:** Database-side filtering for price ranges and multiple sorting options (Price, Alphabetical, and Newest).
 * **Custom Scraping Settings:** Dynamically constructs complex OLX search URLs based on user keywords and price limits.
 
-## 🚀 Installation
+## 📦 Downloads
+For non-technical users, you can download the latest standalone version from the [Releases](https://github.com/Th3Groke/OLX_Scraper/releases) page. 
+*Note: Requires Google Chrome to be installed.*
+
+
+## 🚀 Developer setup
 
 ### 1. Prerequisites
 * Python 3.10+
