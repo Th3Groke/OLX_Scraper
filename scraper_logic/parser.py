@@ -1,9 +1,12 @@
-from scraper import get_page_html, parse_html
-from config import URL
-from listing import Listing
+from scraper_logic.engine import get_page_html
+from scraper_logic.models import Listing
+from bs4 import BeautifulSoup
 
 
-print("fetching url")
+def parse_html(html):
+    soup = BeautifulSoup(html, 'html.parser')
+    print("parsing data...")
+    return soup.find_all('div', {'data-testid': 'l-card'})
 
 
 def serialize_data(listings):
