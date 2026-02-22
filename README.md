@@ -33,7 +33,7 @@ pip install -r requirements.txt
 ## 🛠️ Usage
 Launch the App:
 ```bash
-python App.py
+python main.py
 ```
 
 Scrape Data: Click the Scrape button to open the scraper window. Use the Settings inside that window to define your keyword (e.g., "iPhone 13") and price range.
