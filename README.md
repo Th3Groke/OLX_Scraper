@@ -1,44 +1,40 @@
-📱 OLX Scraper Dashboard
-A modern desktop application built with PyQt6 and Selenium that scrapes listings from OLX.pl, stores them in a local SQLite database, and provides a searchable, filtered dashboard.
+# 📱 OLX Scraper Dashboard
 
-✨ Features
-Asynchronous Scraping: Uses QThread to keep the UI responsive while Selenium fetches data in the background.
+A modern desktop application built with **PyQt6** and **Selenium** that scrapes listings from OLX.pl, stores them in a local SQLite database, and provides a searchable, filtered dashboard.
 
-Smart Duplicate Prevention: Uses URL hashing and database checks to ensure no duplicate entries are saved.
+## ✨ Features
+* **Asynchronous Scraping:** Uses `QThread` to keep the UI responsive while Selenium fetches data in the background.
+* **Smart Duplicate Prevention:** Uses URL checks against the database to ensure no duplicate entries are saved.
+* **Dynamic UI:** * Floating "No records" placeholder that centers automatically on app launch and window resize.
+    * Real-time search bar to filter visible results instantly.
+    * Custom tile-based list view for clear listing presentation.
+* **Persistent Filters:** Database-side filtering for price ranges and multiple sorting options (Price, Alphabetical, and Newest).
+* **Custom Scraping Settings:** Dynamically constructs complex OLX search URLs based on user keywords and price limits.
 
-Dynamic UI: \* Floating "No records" placeholder that centers automatically on app launch and window resize.
+## 🚀 Installation
 
-Real-time search bar to filter visible results instantly.
+### 1. Prerequisites
+* Python 3.10+
+* Google Chrome installed (The scraper uses the installed browser version via Selenium).
 
-Custom tile-based list view for clear listing presentation.
+### 2. Setup
+Clone the repository and install dependencies:
 
-Persistent Filters: Database-side filtering for price ranges and multiple sorting options (Price: Low to High, Price: High to Low, Alphabetical, and Newest).
-
-Custom Scraping Settings: Dynamically constructs complex OLX search URLs based on user keywords and price limits.
-
-🚀 Installation
-
-1. Prerequisites
-   Python 3.10+
-
-Google Chrome installed (The scraper uses the installed browser version via Selenium).
-
-2. Setup
-   Clone the repository and install dependencies:
-
-Bash
-
-git clone https://github.com/Th3Groke/OLX_Scraper.git
+```bash
+git clone [https://github.com/Th3Groke/OLX_Scraper.git](https://github.com/Th3Groke/OLX_Scraper.git)
 cd OLX_Scraper
 python -m venv .venv
-source .venv/bin/activate # Windows: .venv\Scripts\activate
+# On Windows:
+.venv\Scripts\activate
+# On Linux/Mac:
+source .venv/bin/activate
 pip install -r requirements.txt
-🛠️ Usage
+```
 Launch the App:
 
-Bash
-
+```bash
 python App.py
+```
 
 Scrape Data: Click the Scrape button to open the scraper window. Use the Settings inside that window to define your keyword (e.g., "iPhone 13") and price range.
 
