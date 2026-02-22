@@ -43,14 +43,20 @@ Manage Database: Once the scraper finishes, close the scraper window. The main d
 Explore: Use the Filters on the main dashboard to sort existing records by price or name. Use the Search Bar for instant text-based filtering.
 
 ## 📁 Project Structure
-
-app.py - Main dashboard UI, event handling, and window management.
-
-database_handling.py - SQLite logic, dynamic SQL query builder with CAST operations for currency sorting.
-
-scraper_logic.py - Selenium automation, headless browser configuration, and data serialization into objects.
-
-ui_components.py - Custom PyQt6 widgets including the listing tiles and specialized dialogs.
-
+```plaintext
+OLX_Scraper/
+├── main.py                # Application entry point
+├── config.py              # Centralized configuration and CSS selectors 
+├── database_handling.py   # SQLite logic and dynamic SQL query building 
+├── serialization.py       # Data transformation and Listing object creation 
+├── scraper.py             # Selenium-based HTML fetching and BeautifulSoup parsing 
+├── listing.py             # Data model for individual OLX offers 
+├── ui/                    # Directory for all PyQt6 graphical components 
+│   ├── main_window.py     # Primary dashboard logic and search debouncing 
+│   ├── scrape_dialog.py   # Scraper window logic and QThread worker 
+│   └── components.py      # Reusable widgets (ListingTiles, ConfirmDialogs) 
+├── requirements.txt       # Project dependencies 
+└── .gitignore             # Git exclusion rules
+```
 ## 📝 License
 Distributed under the MIT License. See LICENSE for more information.
