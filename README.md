@@ -22,7 +22,7 @@ A modern desktop application built with **PyQt6** and **Selenium** that scrapes 
 Clone the repository and install dependencies:
 
 ```bash
-git clone [https://github.com/Th3Groke/OLX_Scraper.git](https://github.com/Th3Groke/OLX_Scraper.git)
+git clone https://github.com/Th3Groke/OLX_Scraper.git
 cd OLX_Scraper
 python -m venv .venv
 # On Windows:
