@@ -11,7 +11,7 @@ def clear_price(price_str):
 
 
 def DBcreatePresetTable():
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS presets (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE, keyword TEXT, min_price INTEGER, max_price INTEGER)""")
     connection.commit()
@@ -29,7 +29,7 @@ def DBsavePreset(name, keyword, min_p, max_p):
 
 
 def DBgetPresets():
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
     cursor.execute("SELECT name, keyword, min_price, max_price FROM presets")
     presets = cursor.fetchall()
@@ -38,7 +38,7 @@ def DBgetPresets():
 
 
 def DBinsertData(data):
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
 
     cursor.execute(
@@ -58,7 +58,7 @@ def DBinsertData(data):
 
 
 def DBinsertDummy():
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS listings(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT,price_num, INTEGER, location TEXT, link TEXT)")
@@ -71,7 +71,7 @@ def DBinsertDummy():
 
 
 def DBloadData(min_price=None, max_price=None, sort_by=''):
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS listings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT,price_num INTEGER, location TEXT, link TEXT)")
@@ -102,7 +102,7 @@ def DBloadData(min_price=None, max_price=None, sort_by=''):
 
 
 def DBremoveData(db_id):
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
     cursor.execute("DELETE FROM listings WHERE id =?", (db_id,))
     connection.commit()
@@ -116,7 +116,7 @@ def readDataBase():
 
 
 def DBclear():
-    connection = sqlite3.connect("olx_listings.db")
+    connection = sqlite3.connect("./olx_listings.db")
     cursor = connection.cursor()
     cursor.execute("DROP TABLE listings")
     connection.commit()
