@@ -5,7 +5,8 @@ A modern desktop application built with **PyQt6** and **Selenium** that scrapes 
 ## ✨ Features
 * **Asynchronous Scraping:** Uses `QThread` to keep the UI responsive while Selenium fetches data in the background.
 * **Smart Duplicate Prevention:** Uses URL checks against the database to ensure no duplicate entries are saved.
-* **Dynamic UI:** * Floating "No records" placeholder that centers automatically on app launch and window resize.
+* **Dynamic UI:**
+    * Floating "No records" placeholder that centers automatically on app launch and window resize.
     * Real-time search bar to filter visible results instantly.
     * Custom tile-based list view for clear listing presentation.
 * **Persistent Filters:** Database-side filtering for price ranges and multiple sorting options (Price, Alphabetical, and Newest).
