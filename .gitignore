@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,qt
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,qt
 
+chromedriver.exe
+olx_listings.db
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
