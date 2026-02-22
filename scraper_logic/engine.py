@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from bs4 import BeautifulSoup
 
 
 from config import SELECTORS
@@ -34,9 +33,3 @@ def get_page_html(window, url):
         window.new_status.emit("finished scraping html")
         print("finished scraping html")
         browser.quit()
-
-
-def parse_html(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    print("parsing data...")
-    return soup.find_all('div', {'data-testid': 'l-card'})
