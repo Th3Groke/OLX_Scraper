@@ -1,7 +1,5 @@
 URL = "https://www.olx.pl/oferty/"
 FREQUENCY = 3
-minPrice = 0
-maxPrice = 99999
 
 SELECTORS = {
     "card": 'div[data-testid="l-card"]',
