@@ -10,12 +10,39 @@ def clear_price(price_str):
     return int(cleaned) if cleaned else 0
 
 
+def DBcreatePresetTable():
+    connection = sqlite3.connect("olx_listings.db")
+    cursor = connection.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS presets (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE, keyword TEXT, min_price INTEGER, max_price INTEGER)""")
+    connection.commit()
+    connection.close()
+
+
+def DBsavePreset(name, keyword, min_p, max_p):
+    connection = sqlite3.connect("olx_listings.db")
+    cursor = connection.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS presets (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE, keyword TEXT, min_price INTEGER, max_price INTEGER)""")
+    cursor.execute("""INSERT OR REPLACE INTO presets (name, keyword, min_price, max_price) VALUES (?, ?, ?, ?)""",
+                   (name, keyword, min_p, max_p))
+    connection.commit()
+    connection.close()
+
+
+def DBgetPresets():
+    connection = sqlite3.connect("olx_listings.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT name, keyword, min_price, max_price FROM presets")
+    presets = cursor.fetchall()
+    connection.close()
+    return presets
+
+
 def DBinsertData(data):
     connection = sqlite3.connect("olx_listings.db")
     cursor = connection.cursor()
 
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS listings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT, price_int INTEGER, location TEXT, link TEXT UNIQUE)")
+        "CREATE TABLE IF NOT EXISTS listings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT, price_num INTEGER, location TEXT, link TEXT UNIQUE)")
 
     cursor.execute("SELECT link FROM listings")
     existing_links = {row[0] for row in cursor.fetchall()}
@@ -34,7 +61,7 @@ def DBinsertDummy():
     connection = sqlite3.connect("olx_listings.db")
     cursor = connection.cursor()
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS listings(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT, location TEXT, link TEXT)")
+        "CREATE TABLE IF NOT EXISTS listings(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT,price_num, INTEGER, location TEXT, link TEXT)")
 
     cursor.execute(
         '''INSERT INTO listings(title,price,location,link) VALUES("jd","jd","jd","jd")''')
@@ -47,7 +74,7 @@ def DBloadData(min_price=None, max_price=None, sort_by=''):
     connection = sqlite3.connect("olx_listings.db")
     cursor = connection.cursor()
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS listings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT, location TEXT, link TEXT)")
+        "CREATE TABLE IF NOT EXISTS listings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT,price_num INTEGER, location TEXT, link TEXT)")
 
     query = "SELECT price, title, link, id FROM listings Where 1=1"
     params = []

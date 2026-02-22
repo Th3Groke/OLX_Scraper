@@ -6,10 +6,10 @@ class Listing:
     date = ""
     link = ""
 
-    def __init__(self, title, price, price_int, location, date, link):
+    def __init__(self, title, price,  location, date, link, price_num):
         self.title = title
         self.price = price
-        self.price_int = price_int
         self.location = location
         self.date = date
         self.link = link
+        self.price_int = price_num
