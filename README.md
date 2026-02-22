@@ -43,7 +43,7 @@ Manage Database: Once the scraper finishes, close the scraper window. The main d
 Explore: Use the Filters on the main dashboard to sort existing records by price or name. Use the Search Bar for instant text-based filtering.
 
 ## 📁 Project Structure
-
+```plaintext
 OLX_Scraper/
 ├── main.py                # Application entry point
 ├── config.py              # Centralized configuration and CSS selectors 
@@ -57,6 +57,6 @@ OLX_Scraper/
 │   └── components.py      # Reusable widgets (ListingTiles, ConfirmDialogs) 
 ├── requirements.txt       # Project dependencies 
 └── .gitignore             # Git exclusion rules
-
+```
 ## 📝 License
 Distributed under the MIT License. See LICENSE for more information.
