@@ -51,5 +51,5 @@ scraper_logic.py - Selenium automation, headless browser configuration, and data
 
 ui_components.py - Custom PyQt6 widgets including the listing tiles and specialized dialogs.
 
-##📝 License
+## 📝 License
 Distributed under the MIT License. See LICENSE for more information.
