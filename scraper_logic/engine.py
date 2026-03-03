@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-from constants import SELECTORS
+from config import SELECTORS
 
 
 def get_page_html(window, url):

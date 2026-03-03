@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import QThread, Qt, pyqtSignal
 from PyQt6.QtGui import QCloseEvent, QIntValidator
 
-from constants import URL
+from config import URL
 from database_handling import DBinsertData, DBgetPresets, DBsavePreset, DBcreatePresetTable
 from scraper_logic.parser import serialize_run
 
